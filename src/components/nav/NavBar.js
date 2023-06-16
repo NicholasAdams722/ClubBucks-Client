@@ -6,10 +6,10 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar__item">
-                Navigation link
+                Club Store
             </li>
             <li className="navbar__item">
-                Navigation link
+                Student Wallets
             </li>
             <li className="navbar__item">
                 Navigation link
@@ -19,7 +19,7 @@ export const NavBar = () => {
                     <li className="nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
-                                localStorage.removeItem("lu_token")
+                                localStorage.removeItem("cb_token")
                                 navigate('/login')
                             }}
                         >Logout</button>
