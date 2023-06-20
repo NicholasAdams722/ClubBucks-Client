@@ -1,44 +1,55 @@
 //TODO CRUD for all item related fetches to API
+import { getToken } from "./TokenManager"
 
 
-
-export const getAllTickets = () => {
-  return fetch("http://127.0.0.1:8000/", {
+export const getAllItems = () => {
+  let token = getToken()
+  return fetch("http://localhost:8000/items", {
     headers: {
-      Authorization: `Token ${getToken()}`
-    }
+      "Authorization": `Token ${token}`
+    },
   })
     .then(res => res.json())
 }
-export const addTicket = (ticket) => {
-    return fetch("http://127.0.0.1:8000/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${getToken()}`
-      },
-      body: JSON.stringify(ticket)
-    })
-      .then(res => res.json())
-  }
 
-export const updateTicket = (ticket) => {
-    return fetch(`http://127.0.0.1:8000/${ticket.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${getToken()}`
-      },
-      body: JSON.stringify(ticket)
-    })
-  }
-
-  export const deleteTicket = (id) => {
-    return fetch(`http://127.0.0.1:8000/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Token ${getToken()}`
+export const getItemTypes = () => {
+  let token = getToken()
+    return fetch("http://localhost:8000/item_types", {
+      headers: { 
+        "Authorization": `Token ${token}`
       }
-    }
-    )
-  }
+    })
+    .then(res => res.json())
+
+}
+
+//TODO: Post new item to store (Create)
+export const createItem = (item) => {
+  let token = getToken()
+  return fetch("http://localhost:8000/items", { 
+  method: "POST",    
+  headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Token ${token}`
+      },
+      body: JSON.stringify(item),
+  })
+      .then(response => response.json())
+}
+
+//TODO: Edit Item
+
+// export const updateItem = (item) => {
+//   return fetch(`http://localhost:8000/items/${item.id}`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Token ${getToken()}`
+//     },
+//     body: JSON.stringify(item)
+//   })
+// }
+
+
+
+//TODO: Delete Item
