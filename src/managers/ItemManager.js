@@ -65,3 +65,13 @@ export const getItemById = (id) => {
 
 
 //TODO: Delete Item
+
+export const deleteItem = (id) => {
+  return fetch(`http://localhost:8000/items/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Token ${getToken()}`
+    }
+  }
+  )
+}

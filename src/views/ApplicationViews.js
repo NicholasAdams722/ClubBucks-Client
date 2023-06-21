@@ -5,11 +5,20 @@ import { ItemList } from "../components/storeItems/ItemList"
 import { ItemForm } from "../components/storeItems/itemForm"
 import { UpdateItemForm } from "../components/storeItems/UpdateItem"
 
+
 export const ApplicationViews = () => {
+
+    const ClubBucksUser = localStorage.getItem("cb_token")
+    const clubBucksUserObject = JSON.parse(ClubBucksUser)
+
     return <>
+
+
             <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />  
+
+            
             <Route path="/" element={<ItemList />}  />
             <Route path="/additem" element={<ItemForm />}  />
             <Route path="/updateitem/:itemId" element={<UpdateItemForm />}  />
