@@ -15,6 +15,9 @@ export const NavBar = () => {
                 <Link className= "nav_link" to="/studentWallets" >Student Wallets</Link>
             </li>
             <li className="navbar__item">
+                <Link className= "nav_link" to="/studentPurchases" >Student Purchases</Link>
+            </li>
+            <li className="navbar__item">
             </li>
             {
                 (localStorage.getItem("cb_token") !== null) ?

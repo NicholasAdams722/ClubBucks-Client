@@ -42,10 +42,6 @@ export const UpdateItemForm = () => {
     // setCurrentItem(copy);
   };
 
-  // const changeGameState = (evt) => {
-  //   const { name, value } = evt.target;
-  //   setCurrentGame({ ...currentGame, [evt.target.name]: value });
-  // };
 
   return (
     <form className="gameForm">
