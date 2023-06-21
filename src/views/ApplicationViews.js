@@ -3,6 +3,7 @@ import { Login } from "../components/auth/Login"
 import { Register } from "../components/auth/Register"
 import { ItemList } from "../components/storeItems/ItemList"
 import { ItemForm } from "../components/storeItems/itemForm"
+import { UpdateItemForm } from "../components/storeItems/UpdateItem"
 
 export const ApplicationViews = () => {
     return <>
@@ -11,6 +12,7 @@ export const ApplicationViews = () => {
             <Route path="/register" element={<Register />} />  
             <Route path="/" element={<ItemList />}  />
             <Route path="/additem" element={<ItemForm />}  />
+            <Route path="/updateitem/:itemId" element={<UpdateItemForm />}  />
     </Routes>
     </>
 }

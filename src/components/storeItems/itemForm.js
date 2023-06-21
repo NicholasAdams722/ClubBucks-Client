@@ -16,7 +16,6 @@ export const ItemForm = () => {
     name: "",
     description: "",
     itemType: 0,
-    //!price is not being read as integer in payload upon create
     price: 0,
     image: "",
     quantity: 0
