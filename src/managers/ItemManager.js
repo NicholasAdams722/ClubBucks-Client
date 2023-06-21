@@ -39,16 +39,28 @@ export const createItem = (item) => {
 
 //TODO: Edit Item
 
-// export const updateItem = (item) => {
-//   return fetch(`http://localhost:8000/items/${item.id}`, {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Token ${getToken()}`
-//     },
-//     body: JSON.stringify(item)
-//   })
-// }
+export const updateItem = (item) => {
+  return fetch(`http://localhost:8000/items/${item.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Token ${getToken()}`
+    },
+    body: JSON.stringify(item)
+  })
+
+}
+
+//TODO Get item by id
+
+export const getItemById = (id) => {
+  return fetch(`http://localhost:8000/items/${id}`, {
+    headers: {
+      "Authorization": `Token ${getToken()}`
+    }
+  })
+    .then(res => res.json())
+}
 
 
 
