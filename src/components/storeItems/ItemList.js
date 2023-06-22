@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getAllItems } from "../../managers/ItemManager";
 import { useNavigate } from "react-router-dom";
 import { deleteItem } from "../../managers/ItemManager";
-
+import "./Items.css";
 
 export const ItemList = () => {
   const [items, setItems] = useState([]);
@@ -21,9 +21,18 @@ const DeleteItemEvent = (item) => {
 }
 
   return (
-    <>
+    <> 
+    <h1>Club Store</h1>
+    <div className="item-container">
       {items.map((item) => (
         <section key={`item--${item.id}`} className="item">
+
+          <div className="item__name">{item.name}</div>
+          <div className="item__image">{item.image}</div>
+          <div className="item__description">
+            Description: {item.description}
+          </div>
+          <div className="item__price">Price: ${item.price}</div>
           <button
             className="btn-edit"
             onClick={() => navigate(`/updateitem/${item.id}`)}
@@ -34,15 +43,9 @@ const DeleteItemEvent = (item) => {
           <button className="btn-edit" onClick={() => DeleteItemEvent(item.id)}>
             Delete Item
           </button>
-
-          <div className="item__name">{item.name}</div>
-          <div className="item__image">{item.image}</div>
-          <div className="item__description">
-            Description: {item.description}
-          </div>
-          <div className="item__price">Price: {item.price}</div>
         </section>
       ))}
+      </div>
     </>
   );
 };
