@@ -24,7 +24,7 @@ export const Register = () => {
         first_name: firstName.current.value,
         last_name: lastName.current.value,
         password: password.current.value,
-        is_staff: isChecked,
+        is_staff: isChecked
       };
 
       if (!isChecked) {
@@ -33,9 +33,11 @@ export const Register = () => {
       }
 
       registerUser(newUser).then((res) => {
-        if ("token" in res) {
-          localStorage.setItem("cb_token", res.token);
-          navigate("/");
+        
+        
+          if ("valid" in res && res.valid && "token" in res) {
+            localStorage.setItem("cb_token",JSON.stringify(res))
+            navigate("/");
         }
       });
     } else {

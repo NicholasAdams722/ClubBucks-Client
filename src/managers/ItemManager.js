@@ -1,9 +1,9 @@
 //TODO CRUD for all item related fetches to API
 import { getToken } from "./TokenManager"
-
+import { getTokenOnly } from "./TokenManager"
 
 export const getAllItems = () => {
-  let token = getToken()
+  let token = getTokenOnly()
   return fetch("http://localhost:8000/items", {
     headers: {
       "Authorization": `Token ${token}`
@@ -13,7 +13,7 @@ export const getAllItems = () => {
 }
 
 export const getItemTypes = () => {
-  let token = getToken()
+  let token = getTokenOnly()
     return fetch("http://localhost:8000/item_types", {
       headers: { 
         "Authorization": `Token ${token}`
@@ -25,7 +25,7 @@ export const getItemTypes = () => {
 
 //TODO: Post new item to store (Create)
 export const createItem = (item) => {
-  let token = getToken()
+  let token = getTokenOnly()
   return fetch("http://localhost:8000/items", { 
   method: "POST",    
   headers: {
@@ -40,11 +40,12 @@ export const createItem = (item) => {
 //TODO: Edit Item
 
 export const updateItem = (item) => {
+  let token = getTokenOnly()
   return fetch(`http://localhost:8000/items/${item.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Token ${getToken()}`
+      "Authorization": `Token ${token}`
     },
     body: JSON.stringify(item)
   })
@@ -54,9 +55,10 @@ export const updateItem = (item) => {
 //TODO Get item by id
 
 export const getItemById = (id) => {
+  let token = getTokenOnly()
   return fetch(`http://localhost:8000/items/${id}`, {
     headers: {
-      "Authorization": `Token ${getToken()}`
+      "Authorization": `Token ${token}`
     }
   })
     .then(res => res.json())
@@ -67,10 +69,11 @@ export const getItemById = (id) => {
 //TODO: Delete Item
 
 export const deleteItem = (id) => {
+  let token = getTokenOnly()
   return fetch(`http://localhost:8000/items/${id}`, {
     method: "DELETE",
     headers: {
-      Authorization: `Token ${getToken()}`
+      Authorization: `Token ${token}`
     }
   }
   )
