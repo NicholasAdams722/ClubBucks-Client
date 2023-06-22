@@ -1,0 +1,83 @@
+.student {
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+  }
+  
+  .student__name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .student__grade {
+    margin-bottom: 5px;
+  }
+  
+  .student__balance {
+    font-weight: bold;
+  }
+  
+  .btn-edit {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+
+  .studentForm {
+    background: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .studentForm__title {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .student_balance p {
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .form-group label {
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .form-group button {
+    background: #ccc;
+    color: #333;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-right: 5px;
+  }
+  
+  .form-group button:last-child {
+    margin-right: 0;
+    margin-left: 5px;
+  }
+  
+  .btn-primary {
+    background: green;
+    color: #fff;
+    border-radius: 3px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  
