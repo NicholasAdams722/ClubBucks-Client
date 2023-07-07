@@ -33,6 +33,8 @@ export const UpdateItemForm = () => {
     getItemById(itemId).then((res) => setCurrentItem(res));
   }, []);
 
+
+
   const changeItemState = (domEvent) => {
     const { name, value } = domEvent.target;
     setCurrentItem((prevState) => ({ ...prevState, [name]: value }));
@@ -41,6 +43,27 @@ export const UpdateItemForm = () => {
     // copy[domEvent.target.name] = domEvent.target.value
     // setCurrentItem(copy);
   };
+
+  const openCloudinaryWidget = () => {
+    const widget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dr5dwhbw7",
+        uploadPreset: "cld_upload",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          const { secure_url } = result.info;
+          setCurrentItem((prevState) => ({
+            ...prevState,
+            image: secure_url,
+          }));
+        }
+      }
+    );
+
+    widget.open();
+  };
+
 
 
   return (
@@ -109,16 +132,14 @@ export const UpdateItemForm = () => {
 
       <fieldset>
         <div className="form-group">
-          <label htmlFor="numberOfPlayers">Upload Image: </label>
-          <input
-            type="text"
-            name="image"
-            required
-            autoFocus
+          <label htmlFor="image">Upload Image: </label>
+          <button
+            type="button"
+            onClick={openCloudinaryWidget}
             className="form-control"
-            value={currentItem.image}
-            onChange={changeItemState}
-          />
+          >
+            Choose Image
+          </button>
         </div>
       </fieldset>
 
