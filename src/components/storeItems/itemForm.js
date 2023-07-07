@@ -1,16 +1,14 @@
 //TODO Create new Item in store using this form
 
-
-import { useState } from "react"
-import React, { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { createItem, getItemTypes} from "../../managers/ItemManager"
+import { useState } from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { createItem, getItemTypes } from "../../managers/ItemManager";
+import { CloudinaryUploadField } from "cloudinary-react";
 
 export const ItemForm = () => {
-
-  const navigate = useNavigate()
-  const [itemTypes, setItemTypes] = useState([])
-
+  const navigate = useNavigate();
+  const [itemTypes, setItemTypes] = useState([]);
 
   const [currentItem, setCurrentItem] = useState({
     name: "",
@@ -18,16 +16,13 @@ export const ItemForm = () => {
     itemType: 0,
     price: 0,
     image: "",
-    quantity: 0
+    quantity: 0,
   });
 
-
-
-useEffect(() => {
-  // TODO: Get the item types, then set the state
-  getItemTypes().then((res) => setItemTypes(res));
-}, []);
-
+  useEffect(() => {
+    // TODO: Get the item types, then set the state
+    getItemTypes().then((res) => setItemTypes(res));
+  }, []);
 
   // const changeItemState = (evt) => {
 
@@ -35,18 +30,44 @@ useEffect(() => {
   //   copy[evt.target.name] = evt.target.value
   //   setCurrentItem(copy);
   // }
+  
+  const openCloudinaryWidget = () => {
+    const widget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dr5dwhbw7",
+        uploadPreset: "cld_upload",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          const { secure_url } = result.info;
+          setCurrentItem((prevState) => ({
+            ...prevState,
+            image: secure_url,
+          }));
+        }
+      }
+    );
+
+    widget.open();
+  };
+
+  useEffect(() => {
+
+
+    // Clean up the widget instance when unmounting the component
+    return () => {
+    
+    };
+  }, []);
+
 
   const changeItemState = (evt) => {
-    const {name, value} = evt.target
-    setCurrentItem(
-        {...currentItem,
-            [evt.target.name]: value
-        }
-    )
-}
+    const { name, value } = evt.target;
+    setCurrentItem({ ...currentItem, [evt.target.name]: value });
+  };
 
   const handleSubmit = (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
 
     const item = {
       name: currentItem.name,
@@ -54,13 +75,12 @@ useEffect(() => {
       description: currentItem.description,
       price: parseInt(currentItem.price),
       image: currentItem.image,
-      quantity: parseInt(currentItem.quantity)
+      quantity: parseInt(currentItem.quantity),
     };
 
     // Send POST request to your API
     createItem(item).then(() => navigate("/"));
-  }
-  
+  };
 
   return (
     <form className="itemForm">
@@ -80,17 +100,15 @@ useEffect(() => {
         </div>
       </fieldset>
 
-<fieldset>
-      <select onChange={changeItemState} name="itemType">
-
-        {itemTypes.map((itemType) => (
+      <fieldset>
+        <select onChange={changeItemState} name="itemType">
+          {itemTypes.map((itemType) => (
             <option key={itemType.id} value={itemType.id}>
-                {itemType.item_type}
-                </option>
-          )
-        )}
-      </select>
-</fieldset>
+              {itemType.item_type}
+            </option>
+          ))}
+        </select>
+      </fieldset>
 
       {/* TODO: create the rest of the input fields */}
 
@@ -124,19 +142,16 @@ useEffect(() => {
         </div>
       </fieldset>
 
-
       <fieldset>
         <div className="form-group">
           <label htmlFor="image">Upload Image: </label>
-          <input
-            type="text"
-            name="image"
-            required
-            autoFocus
+          <button
+            type="button"
+            onClick={openCloudinaryWidget}
             className="form-control"
-            value={currentItem.image}
-            onChange={changeItemState}
-          />
+          >
+            Choose Image
+          </button>
         </div>
       </fieldset>
 
@@ -161,10 +176,12 @@ useEffect(() => {
           // Prevent form from being submitted
           //evt.preventDefault();
 
-          handleSubmit(evt)}} className="btn btn-primary"
+          handleSubmit(evt);
+        }}
+        className="btn btn-primary"
       >
         Create New Item
       </button>
     </form>
   );
-}
+};
