@@ -24,8 +24,7 @@ export const ItemList = () => {
 
   const handleAddToCartButtonClick = (item) => {
     //TODO create POST in itemManager
-    
-  }
+  };
 
   return (
     <>
@@ -34,11 +33,12 @@ export const ItemList = () => {
         {items?.map((item) => (
           <section key={`item--${item.id}`} className="item">
             <div className="item__name">{item.name}</div>
-            <div className="item__image">{item.image}</div>
+            <div className="item__image">
+              <img src={item.image} alt={item.name} />
+            </div>
             <div className="item__description">
               Description: {item.description}
             </div>
-            return add to cart button.
             <div className="item__price">Price: ${item.price}</div>
             {clubBucksUserObject.staff ? (
               <>
@@ -58,11 +58,11 @@ export const ItemList = () => {
               </>
             ) : (
               <button
-          onClick={(clickEvent) => handleAddToCartButtonClick(clickEvent)}
-          className="btn-createGuitar"
-          >
-          Add to Cart
-        </button>
+                onClick={(clickEvent) => handleAddToCartButtonClick(clickEvent)}
+                className="btn-createGuitar"
+              >
+                Add to Cart
+              </button>
             )}
           </section>
         ))}
