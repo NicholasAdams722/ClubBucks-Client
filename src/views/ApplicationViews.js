@@ -8,6 +8,7 @@ import { StudentList } from "../components/Wallets/StudentWallets";
 import { UpdateStudentForm } from "../components/Wallets/UpdateStudents";
 import { Authorized } from "./Authorized"
 import { StaffAuthorized } from "./StaffAuthorized";
+import { MyCart } from "../components/Cart/myCart"
 // import { MyCart } from 
 
 export const ApplicationViews = () => {
@@ -22,8 +23,9 @@ export const ApplicationViews = () => {
 
         <Route element={<Authorized />}>
           <Route path="/" element={<ItemList />} />
-          {/* <Route path="/mycart" element={<MyCart />} /> */}
+          <Route path="/mycart" element={<MyCart />} />
         </Route>
+       
 
         <Route element={<StaffAuthorized />}>
           <Route path="/studentwallets" element={<StudentList />} />

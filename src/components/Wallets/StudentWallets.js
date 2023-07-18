@@ -24,6 +24,10 @@ export const StudentList = () => {
         <h1>Student Wallets</h1>
           {students.map((student) => (
             <section key={`student--${student.id}`} className="student">
+              <div className="student__name">{student.full_name}</div>
+              <div className="student__grade">Grade Level: {student.grade_level}</div>
+              <div className="student__balance">Current Balance: {student.balance}
+              </div>
               <button
                 className="btn-edit"
                 onClick={() => navigate(`/updatestudent/${student.id}`)}
@@ -31,14 +35,10 @@ export const StudentList = () => {
                 Edit Student Balance
               </button>
     
-              <button className="btn-edit" onClick={() => DeleteStudentEvent(student.id)}>
+              <button className="btn-delete" onClick={() => DeleteStudentEvent(student.id)}>
                 Delete Student
               </button>
            
-              <div className="student__name">Student Id "Name": {student.id}</div>
-              <div className="student__grade">Student Grade Level: {student.grade_level}</div>
-              <div className="student__balance">Current Balance: {student.balance}
-              </div>
             </section>
           ))}
         </>
