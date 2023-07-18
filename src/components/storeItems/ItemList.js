@@ -17,12 +17,13 @@ export const ItemList = () => {
     getAllItems().then((res) => setItems(res));
   }, []);
 
-  // onClick of the button should call the DELETE fetch function and pass in the object’s id. After the DELETE function runs, then the component should get the list again and update the state.
+  // button should call the DELETE fetch function and pass in the object’s id. After the DELETE function runs, then the component should get the list again and update the state.
   const DeleteItemEvent = (item) => {
     deleteItem(item).then(() => getAllItems().then((res) => setItems(res)));
   };
 
   const handleAddToCartButtonClick = (item) => {
+    navigate(`/mycart`);
     //TODO create POST in itemManager
   };
 
@@ -50,7 +51,7 @@ export const ItemList = () => {
                 </button>
 
                 <button
-                  className="btn-edit"
+                  className="btn-delete"
                   onClick={() => DeleteItemEvent(item.id)}
                 >
                   Delete Item
@@ -59,7 +60,7 @@ export const ItemList = () => {
             ) : (
               <button
                 onClick={(clickEvent) => handleAddToCartButtonClick(clickEvent)}
-                className="btn-createGuitar"
+                className="btn-addToCart"
               >
                 Add to Cart
               </button>

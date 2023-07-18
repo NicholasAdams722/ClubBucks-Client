@@ -50,7 +50,7 @@ export const UpdateStudentForm = () => {
       <h2 className="studentForm__title">Update Student Balance</h2>
 
       <section className="student_balance">
-        Student Name: {currentStudent.id} Student Grade: {currentStudent.grade_level} Student Age: {currentStudent.age}
+
         <p>Current Balance: {currentStudent.balance}</p>
 
         <fieldset>
